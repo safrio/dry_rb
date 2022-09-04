@@ -1,7 +1,22 @@
 require 'dry/system/container'
-require 'dry/system/container'
 require "dry/system/loader/autoloading"
 require "zeitwerk"
+
+# --- Dry-rb requirements ---
+require 'dry-types'
+require 'dry/types'
+Dry::Types.load_extensions(:monads)
+
+require 'dry/schema'
+require 'dry-schema'
+Dry::Schema.load_extensions(:monads)
+
+require 'dry-struct'
+
+require 'dry/monads'
+require 'dry/monads/do'
+# ---------------------------
+
 
 # General container class for project dependencies
 #
@@ -19,6 +34,10 @@ class Container < Dry::System::Container
     # business logic
     config.component_dirs.add 'contexts' do |dir|
       dir.memoize = true
+
+      dir.auto_register = proc do |component|
+        !component.identifier.include?("entities") && !component.identifier.include?("types")
+      end
 
       dir.namespaces.add 'cat_toy_testing', key: 'contexts.cat_toy_testing'
       dir.namespaces.add 'testers_accounting', key: 'contexts.testers_accounting'
