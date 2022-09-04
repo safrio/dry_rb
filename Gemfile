@@ -20,6 +20,12 @@ gem 'dry-struct', '1.0'
 # gem 'bigdecimal', '1.4.2'
 gem 'rake'
 
+# HTTP transport layer
+gem 'hanami-api'
+gem 'hanami-controller', git: 'https://github.com/hanami/controller.git', tag: 'v2.0.0.beta1'
+gem 'hanami-validations', git: 'https://github.com/hanami/validations.git', tag: 'v2.0.0.beta1'
+gem 'puma', '~> 3.12.4'
+
 # fitness functions
 gem 'parser'
 

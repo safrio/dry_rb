@@ -48,6 +48,7 @@ class Container < Dry::System::Container
       dir.memoize = true
 
       dir.namespaces.add 'in_memory', key: 'in_memory'
+      dir.namespaces.add 'http', key: 'http' # if ENV['APP_TRANSPORT'] == 'http'
     end
   end
 end
